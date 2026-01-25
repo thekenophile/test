@@ -1,208 +1,100 @@
-/* Google font import gareko (Inter font use garna) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-/* Root variables define gareko – color, spacing, radius reuse garna */
-:root{
-    --primary-color: #1e1e1e;      /* Main button / highlight color */
-    --primary-hover: #131212;      /* Button hover color */
-    --background: #fbfbfb;         /* Page background color */
-    --surface: #181717;            /* Card / container background */
-    --text: #dde0e3;               /* Main text color */
-    --text-secondary: #bcbec1;     /* Secondary text color */
-    --danger: #ef4444;             /* Error / malicious color */
-    --warning: #f59e0b;            /* Warning / suspicious color */
-    --success: #10b981;            /* Success / safe color */
-    --border-radius: 12px;         /* Common border radius */
-}
-
-/* Body ko main styling */
-body{
-    font-family: 'Inter', system-ui, sans-serif; /* Font set gareko */
-    background-color: var(--background);        /* Background color */
-    color: var(--text);                         /* Text color */
-    line-height: 1.6;                           /* Text spacing */
-    padding: 2rem;
-    margin: 0;
-    min-height: 100vh;                          /* Full screen height */
-    display: flex;
-    align-items: center;                        /* Vertically center */
-    justify-content: center;                    /* Horizontally center */
+* {
     box-sizing: border-box;
 }
 
-/* Main card / container styling */
-.container{
-    background: var(--surface);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Light shadow */
-    width: 100%;
-    max-width: 525px;
-}
-
-/* Main heading style */
-h1{
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-/* Section spacing */
-section{
-    margin: 1.5rem 0;
-    text-align: left;
-}
-
-/* Text input and file input styling */
-input[type="text"], input[type="file"]{
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid #e2e8f0;
-    border-radius: var(--border-radius);
-    font-size: 0.9375rem;
-    margin-bottom: 0.75rem;
-}
-
-/* Input focus huda highlight dekhaune */
-input[type="text"]:focus{
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
-}
-
-/* Button styling */
-button{
-    width: 100%;
-    padding: 0.6rem;
-    background-color: var(--primary-color);
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
     color: #fff;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-}
-
-/* Button hover effect */
-button:hover{
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-/* Loading section layout */
-.loading{
-    padding: 2rem;
+    font-family: system-ui, sans-serif;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-/* Spinner animation */
-.spinner{
-    width: 40px;
-    height: 40px;
-    border: 3px solid var(--background);
-    border-top-color: var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s infinite;
+/* Main card */
+.app {
+    width: 400px;
+    padding: 28px;
+    background: #050505;
+    border-radius: 18px;
+    border: 1px solid #222;
+    text-align: center;
 }
 
-/* Spinner rotation animation */
-@keyframes spin {
-    to { transform: rotate(360deg); }
+/* Glowing title */
+.glow {
+    font-size: 2rem;
+    letter-spacing: 4px;
+    text-shadow:
+        0 0 2px #fff,
+        0 0 5px #fff,
+        0 0 10px #aaa;
+    margin-bottom: 6px;
 }
 
-/* Result section styling */
-#result{
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: var(--border-radius);
-    display: none; /* Default ma hide */
+.tagline {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 22px;
 }
 
-/* Error message style */
-#result .error{
-    color: var(--danger);
-    background: #fee2e2;
-    padding: 1rem;
-}
-
-/* Safe verdict color */
-.safe{
-    color: var(--success);
-    font-weight: 600;
-}
-
-/* Malicious verdict color */
-.malicious{
-    color: var(--danger);
-    font-weight: 600;
-}
-
-/* Suspicious verdict color */
-.suspicious{
-    color: var(--warning);
-    font-weight: 600;
-}
-
-/* Modal background (popup) */
-.modal{
-    display: none;
-    position: fixed;
+/* Inputs */
+input {
     width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0);
-    opacity: 0;
-    transition: 0.3s;
+    padding: 11px;
+    background: #0b0b0b;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 12px;
+    margin-bottom: 14px;
 }
 
-/* Modal visible bhaye pachi */
-.modal.show{
-    background: rgba(0,0,0,0.5);
-    opacity: 1;
-}
-
-/* Modal content box */
-.modal-content{
-    background: var(--surface);
-    margin: 5% auto;
-    padding: 1.5rem;
-    width: 80%;
-    max-width: 800px;
-    border-radius: var(--border-radius);
-    overflow-y: auto;
-}
-
-/* Close button (X) */
-.close{
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
+/* Button with glow */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
+    box-shadow: 0 0 10px #fff;
 }
 
-/* Progress bar container */
-.progress-stacked{
-    height: 24px;
-    background: #f1f5f9;
-    display: flex;
-    overflow: hidden;
+button:hover {
+    box-shadow: 0 0 18px #fff;
 }
 
-/* Individual progress bar */
-.progress-bar{
-    height: 100%;
-    color: white;
-    font-size: 0.7rem;
-    transition: width 1s;
+/* Result box */
+#result {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 14px;
+    display: none;
+    font-size: 0.9rem;
 }
 
-/* Responsive design for mobile */
-@media screen and (max-width: 768px){
-    body{
-        padding: 1rem;
-    }
+/* States */
+.safe {
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
 
-    .modal-content{
-        width: 95%;
-    }
+.danger {
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+
+.loading {
+    border: 1px solid #aaa;
+    color: #ddd;
+}
+
+.note {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: #777;
 }
