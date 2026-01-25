@@ -1,56 +1,60 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import multer from "multer";
+import FormData from "form-data";
 
 const app = express();
+const upload = multer(); // Store file in memory buffer
+
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const API_KEY = process.env.VT_API_KEY;
 
-//FILE HASH CHECK (Existing logic)
-app.get("/file/:hash", async (req, res) => {
+/* NEW: ACTUAL FILE UPLOAD SCAN */
+app.post("/scan-file-upload", upload.single("file"), async (req, res) => {
     try {
-        const vt = await fetch(`https://www.virustotal.com/api/v3/files/${req.params.hash}`, {
-            headers: { "x-apikey": API_KEY }
-        });
-        const data = await vt.json();
-        res.status(vt.status).json(data);
-    } catch (err) {
-        res.status(500).json({ error: "Server Error" });
-    }
-});
+        if (!req.file) return res.status(400).json({ error: "No file provided" });
 
-// URL SCAN (Updated to fetch the ACTUAL report)
-app.post("/url", async (req, res) => {
-    try {
-        // Step A: Submit the URL
-        const submitRes = await fetch("https://www.virustotal.com/api/v3/urls", {
+        const form = new FormData();
+        form.append("file", req.file.buffer, req.file.originalname);
+
+        // Step 1: Upload the file to VirusTotal
+        const vtRes = await fetch("https://www.virustotal.com/api/v3/files", {
             method: "POST",
-            headers: {
+            headers: { 
                 "x-apikey": API_KEY,
-                "Content-Type": "application/x-www-form-urlencoded"
+                ...form.getHeaders() 
             },
-            body: new URLSearchParams({ url: req.body.url })
+            body: form
         });
 
-        const submitData = await submitRes.json();
-        if (!submitData.data) throw new Error("VT Submission Failed");
-
-        const analysisId = submitData.data.id;
-
-        // Step B: Get the Analysis results using the ID
-        const reportRes = await fetch(`https://www.virustotal.com/api/v3/analyses/${analysisId}`, {
-            headers: { "x-apikey": API_KEY }
-        });
+        const data = await vtRes.json();
         
-        const reportData = await reportRes.json();
-        res.json(reportData); // This now contains the 'last_analysis_stats'
+        if (!vtRes.ok) throw new Error(data.error?.message || "VT Upload Failed");
+
+        // Step 2: Return the analysis ID to the frontend for polling
+        res.json({ analysis_id: data.data.id });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
+/* GET ANALYSIS STATUS (Shared for Files & URLs) */
+app.get("/analysis/:id", async (req, res) => {
+    try {
+        const vtRes = await fetch(`https://www.virustotal.com/api/v3/analyses/${req.params.id}`, {
+            headers: { "x-apikey": API_KEY }
+        });
+        const data = await vtRes.json();
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ... Keep your existing /url and /file/:hash routes ...
+
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+app.listen(PORT, () => console.log("Server running"));
