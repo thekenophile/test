@@ -1,100 +1,116 @@
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: #000;
+    background-color: #000;
     color: #fff;
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
-/* Main card */
 .app {
-    width: 400px;
-    padding: 28px;
-    background: #050505;
-    border-radius: 18px;
+    width: 380px;
+    padding: 30px;
+    background-color: #050505;
     border: 1px solid #222;
+    border-radius: 20px;
     text-align: center;
 }
 
-/* Glowing title */
 .glow {
     font-size: 2rem;
-    letter-spacing: 4px;
-    text-shadow:
-        0 0 2px #fff,
-        0 0 5px #fff,
-        0 0 10px #aaa;
-    margin-bottom: 6px;
+    text-shadow: 0 0 10px #fff;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
 .tagline {
-    font-size: 0.85rem;
     color: #aaa;
-    margin-bottom: 22px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
 }
 
-/* Inputs */
+.divider {
+    margin: 15px 0;
+    color: #444;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* This section makes Inputs and Buttons equal */
+input, button {
+    width: 100%;
+    height: 45px;          /* Forced equal height */
+    margin: 8px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    display: block;
+}
+
 input {
-    width: 100%;
-    padding: 11px;
-    background: #0b0b0b;
-    color: #fff;
+    background-color: #0b0b0b;
     border: 1px solid #333;
-    border-radius: 12px;
-    margin-bottom: 14px;
+    color: #fff;
+    padding: 0 15px;
 }
 
-/* Button with glow */
+/* Specific fix for file input padding */
+input[type="file"] {
+    padding: 10px;
+    font-size: 12px;
+}
+
 button {
-    width: 100%;
-    padding: 12px;
-    background: #fff;
+    background-color: #fff;
     color: #000;
-    font-weight: 700;
     border: none;
-    border-radius: 12px;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #fff;
+    transition: transform 0.1s, box-shadow 0.2s;
 }
 
 button:hover {
-    box-shadow: 0 0 18px #fff;
+    box-shadow: 0 0 15px #fff;
 }
 
-/* Result box */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Status Boxes */
 #result {
     margin-top: 20px;
-    padding: 16px;
-    border-radius: 14px;
+    padding: 15px;
+    border-radius: 10px;
     display: none;
-    font-size: 0.9rem;
+    border: 1px solid #333;
+    line-height: 1.5;
 }
 
-/* States */
-.safe {
-    border: 1px solid #22c55e;
-    color: #22c55e;
+.safe { 
+    color: #22c55e; 
+    border-color: #22c55e; 
 }
 
-.danger {
-    border: 1px solid #ef4444;
-    color: #ef4444;
+.danger { 
+    color: #ef4444; 
+    border-color: #ef4444; 
 }
 
-.loading {
-    border: 1px solid #aaa;
-    color: #ddd;
+.loading { 
+    color: #aaa; 
+    font-style: italic; 
 }
 
 .note {
-    margin-top: 16px;
-    font-size: 0.75rem;
-    color: #777;
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 15px;
 }
