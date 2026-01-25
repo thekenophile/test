@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,22 +5,24 @@
 }
 
 body {
-    background-color: #000000;
-    color: #fff;
+    background-color: #000000 !important;
+    color: #ffffff;
     font-family: system-ui, -apple-system, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin: 0;
 }
 
 .app {
     width: 380px;
     padding: 30px;
-    background-color: #050505;
+    background-color: #050505 !important;
     border: 1px solid #222;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 .glow {
@@ -44,10 +45,9 @@ body {
     font-weight: bold;
 }
 
-/* This section makes Inputs and Buttons equal */
 input, button {
     width: 100%;
-    height: 45px;          /* Forced equal height */
+    height: 45px;
     margin: 8px 0;
     border-radius: 10px;
     font-size: 14px;
@@ -61,15 +61,14 @@ input {
     padding: 0 15px;
 }
 
-/* Specific fix for file input padding */
 input[type="file"] {
     padding: 10px;
     font-size: 12px;
 }
 
 button {
-    background-color: #fff;
-    color: #000;
+    background-color: #ffffff;
+    color: #000000;
     border: none;
     font-weight: bold;
     cursor: pointer;
@@ -77,14 +76,9 @@ button {
 }
 
 button:hover {
-    box-shadow: 0 0 15px #fff;
+    box-shadow: 0 0 15px #ffffff;
 }
 
-button:active {
-    transform: scale(0.98);
-}
-
-/* Status Boxes */
 #result {
     margin-top: 20px;
     padding: 15px;
@@ -94,24 +88,12 @@ button:active {
     line-height: 1.5;
 }
 
-.safe { 
-    color: #22c55e; 
-    border-color: #22c55e; 
-}
-
-.danger { 
-    color: #ef4444; 
-    border-color: #ef4444; 
-}
-
-.loading { 
-    color: #aaa; 
-    font-style: italic; 
-}
+.safe { color: #22c55e; border-color: #22c55e !important; }
+.danger { color: #ef4444; border-color: #ef4444 !important; }
+.loading { color: #aaa; font-style: italic; }
 
 .note {
     font-size: 0.7rem;
     color: #555;
     margin-top: 15px;
 }
-
