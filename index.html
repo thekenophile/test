@@ -2,35 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Virox</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-      <!-- add icon ko lagi -->
-    <link rel="icon" href="virox.png"
+    <title>Virox | Malware Scanner</title>
+      <link rel="icon" href="virox.png"
         type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app">
+        <h1 class="glow">VIROX</h1>
+        <p class="tagline">Unified Malware Protection</p>
 
-<div class="app">
-    <h1 class="glow">VIROX</h1>
-    <p class="tagline">Unified URL & File Malware Scanner</p>
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g. google.com)">
+            <button id="scanUrlBtn">SCAN URL</button>
+        </div>
 
-    <!-- URL input -->
-    <input type="text" id="urlInput" placeholder="Enter URL (example.com)">
+        <div class="divider">OR</div>
 
-    <!-- File input -->
-    <input type="file" id="fileInput">
+        <div class="input-group">
+            <input type="file" id="fileInput">
+            <button id="scanFileBtn">SCAN FILE</button>
+        </div>
 
-    <button onclick="startScan()">SCAN</button>
-
-    <div id="result"></div>
-
-    <p class="note">
-        File scan uses SHA-256 hash (fast).<br>
-        URL scan submits link for analysis.
-    </p>
-</div>
-
-<script src="script.js"></script>
+        <div id="result"></div>
+        <p class="note">Max file size: 32MB. Real-time analysis takes 30-60s.</p>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
