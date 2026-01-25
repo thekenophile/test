@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
     font-family: system-ui, -apple-system, sans-serif;
     display: flex;
@@ -114,3 +114,4 @@ button:active {
     color: #555;
     margin-top: 15px;
 }
+
