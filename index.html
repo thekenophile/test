@@ -1,51 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <title>Virox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Virox</title>
- <!-- add icon ko lagi -->
+      <!-- add icon ko lagi -->
     <link rel="icon" href="virox.png"
         type="image/x-icon" />
-
-
-
-
 </head>
-
 <body>
 
-    <div class="container">
-        <h1>Virox</h1>
+<div class="app">
+    <h1 class="glow">VIROX</h1>
+    <p class="tagline">Unified URL & File Malware Scanner</p>
 
-        <section>
-            <h2>Scan a URL</h2>
-            <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://something.com)">
-            <button onclick="scanURL()">Scan URL</button>
-        </section>
+    <!-- URL input -->
+    <input type="text" id="urlInput" placeholder="Enter URL (example.com)">
 
-        <section>
-            <h2>Scan a File</h2>
-            <input type="file" id="fileInput">
-            <button onclick="scanFile()">Scan File</button>
-        </section>
+    <!-- File input -->
+    <input type="file" id="fileInput">
 
-        <div id="result"></div>
+    <button onclick="startScan()">SCAN</button>
 
-        <div id="fullReportModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2>Full Report</h2>
-                <div id="fullReportContent"></div>
-            </div>
-        </div>
+    <div id="result"></div>
 
-    </div>
+    <p class="note">
+        File scan uses SHA-256 hash (fast).<br>
+        URL scan submits link for analysis.
+    </p>
+</div>
 
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
